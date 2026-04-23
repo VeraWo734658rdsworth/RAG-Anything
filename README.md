@@ -70,7 +70,7 @@ config = RAGAnythingConfig(
     embedding_model="text-embedding-3-small",
     max_tokens=4096,
     chunk_size=800,   # reduced from 1200 — smaller chunks improve retrieval precision for dense docs
-    chunk_overlap=100,
+    chunk_overlap=150,  # increased from 100 — helps preserve context across chunk boundaries
     enable_image_processing=True,
     enable_table_processing=True,
 )
@@ -98,7 +98,3 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
 4. Push to the branch (`git push origin feat/amazing-feature`)
 5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
