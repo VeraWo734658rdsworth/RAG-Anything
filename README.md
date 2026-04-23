@@ -73,6 +73,7 @@ config = RAGAnythingConfig(
     chunk_overlap=150,  # increased from 100 — helps preserve context across chunk boundaries
     enable_image_processing=True,
     enable_table_processing=True,
+    top_k=10,  # increased from default 5 — retrieving more candidates improves recall on longer docs
 )
 
 rag = RAGAnything(config=config, working_dir="./rag_storage")
@@ -95,6 +96,4 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feat/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feat/amazing-feature`)
-5. Open a Pull Request
+3. Commit your changes (`git commit -m 'feat: add amazing
