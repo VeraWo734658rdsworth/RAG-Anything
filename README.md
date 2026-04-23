@@ -69,7 +69,7 @@ config = RAGAnythingConfig(
     llm_model="gpt-4o",
     embedding_model="text-embedding-3-small",
     max_tokens=4096,
-    chunk_size=1200,
+    chunk_size=800,   # reduced from 1200 — smaller chunks improve retrieval precision for dense docs
     chunk_overlap=100,
     enable_image_processing=True,
     enable_table_processing=True,
@@ -102,7 +102,3 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-This project is a fork of [HKUDS/RAG-Anything](https://github.com/HKUDS/RAG-Anything). We extend our gratitude to the original authors for their foundational work.
