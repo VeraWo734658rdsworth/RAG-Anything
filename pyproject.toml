@@ -76,7 +76,7 @@ Issues = "https://github.com/HKUDS/RAG-Anything/issues"
 packages = ["raganything"]
 
 [tool.ruff]
-line-length = 88
+line-length = 100
 target-version = "py310"
 
 [tool.ruff.lint]
@@ -91,3 +91,5 @@ warn_unused_configs = true
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+# increase verbosity by default for easier debugging during local development
+addopts = "-v"
