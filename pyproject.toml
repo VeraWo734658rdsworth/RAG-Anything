@@ -1,86 +1,93 @@
 [build-system]
-requires = ["setuptools>=64", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
-name = "raganything"
-dynamic = ["version"]
-authors = [
-    {name = "Zirui Guo"}
-]
-description = "RAGAnything: All-in-One RAG System"
+name = "rag-anything"
+version = "0.1.0"
+description = "A multimodal RAG system capable of processing and understanding any type of document"
 readme = "README.md"
-license = { text = "MIT" }
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
+authors = [
+    { name = "RAG-Anything Contributors" }
+]
+keywords = [
+    "rag",
+    "retrieval-augmented-generation",
+    "multimodal",
+    "llm",
+    "document-processing",
+    "knowledge-graph"
+]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "huggingface_hub",
-    "lightrag-hku",
-    "mineru[core]",
-    "tqdm",
+    "lightrag-hku>=1.3.0",
+    "numpy>=1.26.0",
+    "Pillow>=10.0.0",
+    "pypdf>=4.0.0",
+    "python-docx>=1.1.0",
+    "python-pptx>=0.6.23",
+    "openpyxl>=3.1.0",
+    "pandas>=2.0.0",
+    "aiofiles>=23.0.0",
+    "tenacity>=8.2.0",
+    "tiktoken>=0.7.0",
 ]
 
 [project.optional-dependencies]
-image = ["Pillow>=10.0.0"]
-text = ["reportlab>=4.0.0"]
-office = []  # Requires LibreOffice (external program)
-paddleocr = [
-    "paddleocr>=2.7.0",
-    "pypdfium2>=4.25.0",
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.0.0",
 ]
-markdown = [
-    "markdown>=3.4.0",
-    "weasyprint>=60.0",
-    "pygments>=2.10.0",
+vision = [
+    "torch>=2.0.0",
+    "transformers>=4.40.0",
+    "accelerate>=0.30.0",
 ]
-all = [
-    "Pillow>=10.0.0",
-    "reportlab>=4.0.0",
+ocr = [
+    "paddlepaddle>=2.6.0",
     "paddleocr>=2.7.0",
-    "pypdfium2>=4.25.0",
-    "markdown>=3.4.0",
-    "weasyprint>=60.0",
-    "pygments>=2.10.0",
+]
+audio = [
+    "openai-whisper>=20231117",
 ]
 
 [project.urls]
 Homepage = "https://github.com/HKUDS/RAG-Anything"
-Documentation = "https://github.com/HKUDS/RAG-Anything"
 Repository = "https://github.com/HKUDS/RAG-Anything"
 Issues = "https://github.com/HKUDS/RAG-Anything/issues"
 
-[tool.uv]
-dev-dependencies = [
-    "pytest>=6.0",
-    "pytest-asyncio",
-    "black",
-    "isort",
-    "flake8",
-    "mypy",
-    "openai",
-    "python-dotenv",
-]
-
-[tool.setuptools.packages.find]
-include = ["raganything*"]
-
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.dynamic]
-version = {attr = "raganything.__version__"}
+[tool.hatch.build.targets.wheel]
+packages = ["raganything"]
 
 [tool.ruff]
+line-length = 88
 target-version = "py310"
 
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
 [tool.pytest.ini_options]
+asyncio_mode = "auto"
 testpaths = ["tests"]
-python_files = ["test*.py"]
-norecursedirs = ["examples"]
