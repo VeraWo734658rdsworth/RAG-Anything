@@ -3,6 +3,10 @@
 This package provides a flexible and extensible RAG (Retrieval-Augmented Generation)
 framework capable of handling multiple modalities including text, images, tables,
 equations, and more.
+
+Personal fork notes:
+- Forked from HKUDS/RAG-Anything for personal learning and experimentation
+- See README for original project documentation
 """
 
 from raganything.raganything import RAGAnything
